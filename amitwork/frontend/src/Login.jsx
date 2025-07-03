@@ -2,7 +2,8 @@
 // googal 
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-//
+import { useNavigate } from 'react-router-dom';
+
 // src/LoginPage.jsx
 import { useState } from 'react';
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -33,6 +34,7 @@ const Login = () => {
       if (res.ok) {
         alert("✅ Login successful!");
         // you can redirect here
+        navigate("/homepage");
       } else {
         alert("❌ " + (data.message || "Login failed"));
       }
@@ -58,6 +60,7 @@ const Login = () => {
       // console.log(data);
       if (res.ok) {
         alert("✅ Google login successful");
+        navigate("/homepage");
       } else {
         alert("❌ Login failed");
       }
